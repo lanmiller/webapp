@@ -1,6 +1,9 @@
-// main.js
+// webapp/main.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Флаг для предотвращения повторных перенаправлений
+    let isRedirecting = false;
+
     // Функция для загрузки HTML модулей
     const loadModule = async (containerId, modulePath) => {
         try {
@@ -44,9 +47,82 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Загрузка модуля Top и Bottom при загрузке страницы
-    loadModule('top-container', 'top/top.html');
-    loadModule('bottom-container', 'bottom/bottom.html');
+    // Функция для инициализации авторизации через Telegram Web App
+    const initializeTelegramAuth = async () => {
+        const tg = window.Telegram.WebApp;
+
+        // Проверяем, открыто ли приложение внутри Telegram
+        if (!tg.initData) {
+            if (!isRedirecting) {
+                isRedirecting = true;
+                // Если нет, перенаправляем пользователя к боту
+                window.location.href = 'https://t.me/gamen_test_bot/gamen_test';
+            }
+            return;
+        }
+
+        const initData = tg.initData;
+
+        // Путь к вашему FastAPI бэкенду
+        const backendUrl = 'https://wildly-certain-oarfish.ngrok-free.app/auth';
+
+        try {
+            const response = await fetch(backendUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({ initData }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Ошибка авторизации: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+
+            if (data.status === 'ok') {
+                // Успешная аутентификация, отображаем имя пользователя
+                const username = data.username || 'Пользователь';
+                document.getElementById('greeting').innerText = `Привет, ${username}!`;
+
+                // Обновляем nickname в top.html
+                const nicknameElement = document.getElementById('user-nickname');
+                if (nicknameElement) {
+                    nicknameElement.innerText = username;
+                } else {
+                    console.warn('Элемент с id "user-nickname" не найден.');
+                }
+            } else {
+                // Обработка ошибок, полученных от бэкенда
+                console.error('Authentication failed:', data);
+                document.getElementById('greeting').innerText = 'Ошибка аутентификации';
+            }
+        } catch (error) {
+            console.error('Error during authentication:', error);
+            document.getElementById('greeting').innerText = 'Ошибка при запросе';
+        }
+    };
+
+    // Функция для загрузки модулей и инициализации авторизации после загрузки
+    const loadModulesAndAuthenticate = async () => {
+        const modules = [
+            loadModule('top-container', 'top/top.html'),
+            loadModule('bottom-container', 'bottom/bottom.html')
+            // Добавьте другие модули по необходимости
+        ];
+
+        try {
+            await Promise.all(modules);
+            // После загрузки всех модулей выполняем авторизацию
+            await initializeTelegramAuth();
+        } catch (error) {
+            console.error('Ошибка при загрузке модулей:', error);
+        }
+    };
+
+    // Запуск загрузки модулей и авторизации
+    loadModulesAndAuthenticate();
 
     // Функция для загрузки модулей внутри content
     window.loadContentModule = async (modulePath) => {
