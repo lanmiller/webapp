@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.status === 'ok') {
                 // Успешная аутентификация, отображаем имя пользователя
                 const username = data.username || 'Пользователь';
-                document.getElementById('greeting').innerText = `Привет, ${username}!`;
+
 
                 // Обновляем nickname в top.html
                 const nicknameElement = document.getElementById('user-nickname');
@@ -96,11 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Обработка ошибок, полученных от бэкенда
                 console.error('Authentication failed:', data);
-                document.getElementById('greeting').innerText = 'Ошибка аутентификации';
+                document.getElementById('user-nickname').innerText = 'Ошибка аутентификации';
             }
         } catch (error) {
             console.error('Error during authentication:', error);
-            document.getElementById('greeting').innerText = 'Ошибка при запросе';
+            document.getElementById('user-nickname').innerText = 'Ошибка при запросе';
         }
     };
 
