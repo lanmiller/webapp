@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const icon = item.querySelector('.bottom__icon');
             const type = item.getAttribute('data-type');
             // Меняем иконку на неактивную
-            icon.src = `../assets/images/bottom-${type}-false.svg`;
+            icon.src = `assets/images/bottom-${type}-false.svg`;
         });
 
         // Устанавливаем активное состояние на выбранной кнопке
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetIcon = target.querySelector('.bottom__icon');
         const targetType = target.getAttribute('data-type');
         // Меняем иконку на активную
-        targetIcon.src = `../assets/images/bottom-${targetType}-true.svg`;
+        targetIcon.src = `assets/images/bottom-${targetType}-true.svg`;
 
         // Загружаем соответствующий модуль контента
         loadContentModule(`content/${targetType}.html`);
