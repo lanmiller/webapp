@@ -1,0 +1,21 @@
+/* main.css */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--dark-brand-01);
+}
+
+#top-container,
+#bottom-container {
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+    overflow-y: auto;
+    background-color: var(--dark-brand-02);
+    padding: 16px;
+    box-sizing: border-box;
+}

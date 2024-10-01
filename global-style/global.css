@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap');
+
+body {
+    margin: 0;
+    line-height: normal;
+    }
+
+:root {
+
+    
+    /* Font family */
+    --font-primary: 'Oxanium', sans-serif;
+
+    /* Font sizes */
+    --h1-sembold: 30px;
+    --h2-regular: 24px;
+    --h2-sembold: 24px;
+    --h3-sembold: 20px;
+    --h3-regular: 20px;
+    --h4-sembold: 16px;
+    --h4-bold: 16px;
+    --h4-regular: 16px;
+    --body-sembold: 14px;
+    --body-bold: 14px;
+    --body-regular: 14px;
+    --description-sembold: 12px;
+    --description-regular: 12px;
+    --mobile-description-sembold: 10px;
+    --mobile-description-regular: 10px;
+
+    /* Font weights */
+    --font-weight-regular: 400;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+
+    /* Line heights */
+    --line-height-h1: 40px;
+    --line-height-h2: 32px;
+    --line-height-h3: 28px;
+    --line-height-h4: 24px;
+    --line-height-body: 22px;
+    --line-height-description: 16px;
+    --line-height-mobile-description: 12px;
+
+    /* Colors */
+    --dark-brand-01: #0B0D10;
+    --dark-brand-02: #202225;
+    --dark-brand-03: #292C30;
+    --dark-brand-04: #2E3338;
+    --dark-brand-05: #353940;
+    --dark-brand-06: #444951;
+    --dark-brand-07: #5E636A;
+    --dark-brand-08: #717780;
+    --dark-brand-09: #8F9297;
+    --dark-brand-stroke: #545860;
+    --dark-brand-linear-menu: linear-gradient(135deg, #787D85 0,#555B64 100.00%);
+    --dark-brand-linear-70: linear-gradient(180deg, #707B86 0,#2E3338 100.00%);
+    --grade-common-text: #BCBCBC;
+    --grade-common-card: #7A7A7C;
+    --grade-common-radial: radial-gradient(50% 50% at 50% 50%, rgba(227, 227, 227, 0.7), rgba(108, 103, 103, 0.7));
+    --grade-common-down: #767474;
+    --grade-common-up: #ACACAC;
+    --grade-rare-card: #597950;
+    --grade-rare-text: #1AA44F;
+    --grade-rare-radial: radial-gradient(60.58% 50% at 50% 50%, rgba(153, 181, 143, 0.70) 0%, rgba(24, 64, 10, 0.70) 100%);
+    --grade-rare-up: #BCD1B4;
+    --grade-rare-down: #6B8D5E;
+    --grade-unique-card: #2E6082;
+    --grade-unique-text: #187FCE;
+    --grade-unique-radial: radial-gradient(60.58% 50% at 50% 50%, rgba(128, 155, 175, 0.70) 0%, rgba(2, 47, 80, 0.70) 100%);
+    --grade-unique-up: #ABC1D1;
+    --grade-unique-down: #6C8597;
+    --grade-epic-card: #882E2D;
+    --grade-epic-text: #B22746;
+    --grade-epic-radial: radial-gradient(60.58% 50% at 50% 50%, rgba(193, 138, 141, 0.70) 0%, rgba(88, 5, 5, 0.70) 100%);
+    --grade-epic-up: #E4C0C0;
+    --grade-epic-down: #A77575;
+    --grade-legend-card: #613F92;
+    --grade-legend-text: #9656B5;
+    --grade-legend-radial: radial-gradient(60.58% 50% at 50% 50%, rgba(168, 139, 194, 0.70) 0%, rgba(48, 5, 88, 0.70) 100%);
+    --grade-legend-up: #D3C0E4;
+    --grade-legend-down: #8F75A7;
+    --grade-mythic-card: #FCB140;
+    --grade-mythic-text: #E8AD23;
+    --grade-mythic-radial: radial-gradient(60.58% 50% at 50% 50%, rgba(220, 179, 117, 0.70) 0%, rgba(112, 70, 7, 0.70) 100%);
+    --grade-mythic-up: #F6EAD7;
+    --grade-mythic-down: #C5A473;
+    --grade-all-angular: conic-gradient(from 49deg at 49.09% 50%, #5E636A 0deg, #597950 32.40000128746033deg, #2E6082 64.80000257492065deg, #882E2D 97.20000386238098deg, #9656B5 129.6000051498413deg, #E8AD23 161.99999570846558deg, #5E636A 194.40000772476196deg, #597950 226.79999828338623deg, #2E6082 259.2000102996826deg, #9656B5 291.6000008583069deg, #E8AD23 327.60000944137573deg);
+    --overlay-shadow-50: #2A343A80;
+    --overlay-shadow-40: #191E2566;
+    --colored-red-01: #D86163;
+    --colored-red-02: #FF0000;
+    --colored-yellow-01: #D4D768;
+    --colored-yellow-02: #FFD949;
+    --colored-green-02: #74C37F;
+    --colored-green-01: #5AA364;
+    --colored-blue-01: #4854DC;
+    --colored-blue-02: #5A65EA;
+    --colored-blue-03: #8B93ED;
+    --colored-blue-04: #849CF1;
+    --mono-black: #000000;
+    --mono-white: #FFFFFF;
+
+    /* Effects */
+    --bottom: 0px -4px 4px rgba(0, 0, 0, 0.25), 0px -1px 3px rgba(93, 107, 132, 0.18), 0px -6px 6px rgba(93, 107, 132, 0.15), 0px -13px 8px rgba(93, 107, 132, 0.09);
+    --top: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 1px 3px rgba(93, 107, 132, 0.18), 0px 6px 6px rgba(93, 107, 132, 0.15), 0px 13px 8px rgba(93, 107, 132, 0.09);
+    --grade-mythic: 0px -8px 8px rgba(197, 164, 115, 0.24), 0px 8px 8px rgba(197, 164, 115, 0.24);
+    --grade-legend: 0px -8px 8px rgba(143, 117, 167, 0.24), 0px 8px 8px rgba(143, 117, 167, 0.24);
+    --grade-epic: 0px -8px 8px rgba(197, 115, 115, 0.24), 0px 8px 8px rgba(197, 115, 115, 0.24);
+    --grade-unique: 0px -8px 8px rgba(93, 105, 147, 0.24), 0px 8px 8px rgba(93, 105, 147, 0.24);
+    --grade-rare: 0px -8px 8px rgba(86, 116, 78, 0.35), 0px 8px 8px rgba(86, 116, 78, 0.35);
+    --grade-common: 0px -8px 8px rgba(122, 122, 124, 0.35), 0px 8px 8px rgba(122, 122, 124, 0.35);
+    --main-dark-first: 0px 4px 4px 0px rgba(0,0,0,0);   
+    
+    /* Gaps */
+--gap-9xs: 4px;
+}

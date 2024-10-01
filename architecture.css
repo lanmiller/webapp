@@ -1,0 +1,18 @@
+webapp/
+├── main.html
+├── main.css
+├── main.js
+├── global-style/
+│   └── global.css
+├── top/
+│   ├── top.html
+│   ├── top.css
+│   └── top.js
+├── content/
+│   ├── content.html
+│   ├── content.css
+│   └── content.js
+├── bottom/
+│   ├── bottom.html
+│   ├── bottom.css
+│   └── bottom.js
