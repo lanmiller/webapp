@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    background-color: var(--dark-brand-02);
+    color: var(--mono-white);
+    font-family: var(--font-primary);
+    padding: 20px;
+}
+
+/* Стили для разделов */
+.section-title {
+    font-size: var(--h2-regular);
+    line-height: var(--line-height-h2);
+    font-weight: var(--font-weight-regular);
+    margin-top: 20px;
+}
+
+/* Сетка для цветных квадратиков */
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.color-box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: var(--font-weight-semi-bold);
+    text-align: center;
+    box-shadow: var(--main-dark-first);
+}
+
+/* Типографические стили */
+.heading-1 {
+    font-size: var(--h1-sembold);
+    line-height: var(--line-height-h1);
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.heading-2-regular {
+    font-size: var(--h2-regular);
+    line-height: var(--line-height-h2);
+    font-weight: var(--font-weight-regular);
+}
+
+.heading-2-sembold {
+    font-size: var(--h2-sembold);
+    line-height: var(--line-height-h2);
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.heading-3-regular {
+    font-size: var(--h3-regular);
+    line-height: var(--line-height-h3);
+    font-weight: var(--font-weight-regular);
+}
+
+.heading-3-sembold {
+    font-size: var(--h3-sembold);
+    line-height: var(--line-height-h3);
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.heading-4-regular {
+    font-size: var(--h4-regular);
+    line-height: var(--line-height-h4);
+    font-weight: var(--font-weight-regular);
+}
+
+.heading-4-bold {
+    font-size: var(--h4-bold);
+    line-height: var(--line-height-h4);
+    font-weight: var(--font-weight-bold);
+}
+
+.body-regular {
+    font-size: var(--body-regular);
+    line-height: var(--line-height-body);
+    font-weight: var(--font-weight-regular);
+}
+
+.body-sembold {
+    font-size: var(--body-sembold);
+    line-height: var(--line-height-body);
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.description-regular {
+    font-size: var(--description-regular);
+    line-height: var(--line-height-description);
+    font-weight: var(--font-weight-regular);
+}
+
+/* Эффекты */
+.effects-section {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Позволяет блокам переноситься на новую строку */
+    gap: 20px; /* Добавляет расстояние между блоками */
+}
+
+.effect-box {
+    width: 150px; /* Увеличьте ширину для лучшей видимости эффекта */
+    height: 150px; /* Увеличьте высоту для лучшей видимости эффекта */
+    margin: 20px; /* Добавьте отступы для размещения блоков */
+    background-color: var(--mono-white); /* Сделайте фон белым для контраста */
+    border: 1px solid var(--dark-brand-01); /* Добавьте темную границу для выделения блоков */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: var(--body-regular);
+    font-weight: var(--font-weight-semi-bold);
+    color: var(--dark-brand-01); /* Установите цвет текста */
+}
+
+
