@@ -31,7 +31,11 @@ document.getElementById('spin-button').addEventListener('click', () => {
             startSpinAnimation();
 
             // Запрос к API /spin
+<<<<<<< Updated upstream
             const response = await fetch(window.backendUrl.concat('/spin'), {
+=======
+            const response = await fetch('https://wildly-certain-oarfish.ngrok-free.app/spin', {
+>>>>>>> Stashed changes
                 method: 'GET',
                 headers: {
                     // Убедитесь, что у вас настроена авторизация или удалите этот заголовок, если он не нужен
