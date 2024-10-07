@@ -113,5 +113,8 @@ body {
     --main-dark-first: 0px 4px 4px 0px rgba(0,0,0,0);   
     
     /* Gaps */
---gap-9xs: 4px;
+    --gap-9xs: 4px;
+
+    /*Borders*/
+    --br-9xs: 8px;
 }
