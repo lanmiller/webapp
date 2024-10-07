@@ -10,16 +10,20 @@ document.getElementById('spin-button').addEventListener('click', () => {
     function startSpinAnimation() {
         const spinImage = document.getElementById('spin-image');
         const frameFaceDown = document.getElementById('frame-facedown-all');
-        spinImage.classList.add('rotating');
-        frameFaceDown.classList.add('rotating');
+        if (frameFaceDown) {
+            spinImage.classList.add('rotating');
+            frameFaceDown.classList.add('rotating');
+        }
     }
 
     // Функция для остановки анимации вращения
     function stopSpinAnimation() {
         const spinImage = document.getElementById('spin-image');
         const frameFaceDown = document.getElementById('frame-facedown-all');
-        spinImage.classList.remove('rotating');
-        frameFaceDown.classList.remove('rotating');
+        if (frameFaceDown) {
+            spinImage.classList.remove('rotating');
+            frameFaceDown.classList.remove('rotating');
+        }
     }
 
     // Функция для обработки ответа от API
@@ -63,9 +67,9 @@ document.getElementById('spin-button').addEventListener('click', () => {
     }
 
     // Функция для отображения новой карты
-    function displayGameCard(data) {
+   async function displayGameCard(data) {
         const cardPlaceholder = document.getElementById('card-placeholder');
-
+        cardPlaceholder.querySelectorAll('div').forEach(div => div.remove());
         if (!cardPlaceholder) {
             console.error('Элемент с ID "card-placeholder" не найден.');
             return;

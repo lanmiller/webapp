@@ -68,7 +68,7 @@
 .card-down-all {
     width: 200px;
     box-shadow: var(--main-dark-first);
-    border-radius: 3px;
+    border-radius: 4px;
     background-color: var(--overlay-shadow-50);
     height: 200px;
     overflow: hidden;
@@ -81,6 +81,16 @@
     box-sizing: border-box;
     position: relative;
     gap: 10px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    background-color: #2E3338;
 }
 
 .frame-facedown-all-icon {
