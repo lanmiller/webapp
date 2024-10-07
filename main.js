@@ -1,7 +1,8 @@
 // main.js
 document.addEventListener('DOMContentLoaded', () => {
     // Путь к вашему FastAPI бэкенду
-    window.backendUrl = 'http://127.0.0.1:8080';
+    // window.backendUrl = 'http://127.0.0.1:8080';
+    window.backendUrl = 'https://wildly-certain-oarfish.ngrok-free.app';
 
     // Флаг для предотвращения повторных перенаправлений
     let isRedirecting = false;

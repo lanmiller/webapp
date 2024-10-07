@@ -58,7 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция для получения статусов уведомлений с backend
     async function fetchNotificationStatuses() {
         try {
-            const response = await fetch(window.backendUrl.concat('/api/notifications/status'));
+            const response = await fetch(window.backendUrl.concat('/api/notifications/status'),
+                {
+                    method: 'GET',
+                    headers: {
+                        // Убедитесь, что у вас настроена авторизация или удалите этот заголовок, если он не нужен
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true'
+                    },
+                });
             if (!response.ok) {
                 throw new Error(`Ошибка сети: ${response.status}`);
             }

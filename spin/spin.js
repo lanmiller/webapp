@@ -36,6 +36,7 @@ document.getElementById('spin-button').addEventListener('click', () => {
                 headers: {
                     // Убедитесь, что у вас настроена авторизация или удалите этот заголовок, если он не нужен
                     'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true'
                 },
             });
 
