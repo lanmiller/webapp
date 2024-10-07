@@ -73,7 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNotificationStatuses();
 
     // Запрашиваем статусы уведомлений с интервалом
-    setInterval(fetchNotificationStatuses, 10000); // Каждые 10 секунд
+    // setInterval(fetchNotificationStatuses, 10000); // Каждые 10 секунд
+    setInterval(fetchNotificationStatuses, 10000000); // Каждые 10000 секунд
 
     // Инициализируем активную вкладку "home" при загрузке
     const initialTab = document.querySelector('.bottom__item[data-type="home"]');
