@@ -88,6 +88,5 @@ document.getElementById('spin-button').addEventListener('click', () => {
         cardPlaceholder.appendChild(gameCard);
     }
 
-    console.log('Button clicked!');
     handleSpin(); // Ваша функция для спина
 });
