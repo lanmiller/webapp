@@ -1,18 +1,25 @@
 // spin/spin.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const spinButton = document.getElementById('spin-button');
-    const spinImage = document.getElementById('spin-image');
-    const frameFaceDown = document.getElementById('frame-facedown-all');
+
+
+});
+
+document.getElementById('spin-button').addEventListener('click', () => {
+
 
     // Функция для начала анимации вращения
     function startSpinAnimation() {
+        const spinImage = document.getElementById('spin-image');
+        const frameFaceDown = document.getElementById('frame-facedown-all');
         spinImage.classList.add('rotating');
         frameFaceDown.classList.add('rotating');
     }
 
     // Функция для остановки анимации вращения
     function stopSpinAnimation() {
+        const spinImage = document.getElementById('spin-image');
+        const frameFaceDown = document.getElementById('frame-facedown-all');
         spinImage.classList.remove('rotating');
         frameFaceDown.classList.remove('rotating');
     }
@@ -24,14 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             startSpinAnimation();
 
             // Запрос к API /spin
-            const response = await fetch('/spin', {
+            const response = await fetch(window.backendUrl.concat('/spin'), {
                 method: 'GET',
                 headers: {
                     // Убедитесь, что у вас настроена авторизация или удалите этот заголовок, если он не нужен
-                    'Content-Type': 'application/json', 
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true'
                 },
-                mode: 'cors', // Добавляем режим CORS
-                credentials: 'include', // Добавляем, если необходимо передавать куки
             });
 
             if (!response.ok) {
@@ -61,19 +67,27 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayGameCard(data) {
         const cardPlaceholder = document.getElementById('card-placeholder');
 
-        // Создаем новый элемент карточки с использованием game-card.js
-        const gameCard = new GameCard({
-            grade: data.grade,
-            gameImage: data.game_img,
-            notification: data.notification,
-            size: 200
-        });
+        // Удаляем только существующие <game-card> элементы
+        const existingGameCards = cardPlaceholder.querySelectorAll('game-card');
+        existingGameCards.forEach(card => card.remove());
+
+        // Создаём новый элемент <game-card>
+        const gameCard = document.createElement('game-card');
+
+        // Устанавливаем необходимые атрибуты
+        gameCard.setAttribute('grade', data.grade);
+        gameCard.setAttribute('game-image', data.game_img);
+        if (data.notification) {
+            gameCard.setAttribute('notification', '');
+        }
+
+        // Устанавливаем размер через CSS или атрибуты, если необходимо
+        gameCard.style.width = '200px';
+        gameCard.style.height = '200px';
 
         // Очищаем placeholder и добавляем новую карточку
-        cardPlaceholder.innerHTML = '';
-        cardPlaceholder.appendChild(gameCard.getElement());
+        cardPlaceholder.appendChild(gameCard);
     }
 
-    // Привязываем обработчик к кнопке
-    spinButton.addEventListener('click', handleSpin);
+    handleSpin(); // Ваша функция для спина
 });

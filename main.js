@@ -1,6 +1,9 @@
 // main.js
-
 document.addEventListener('DOMContentLoaded', () => {
+    // Путь к вашему FastAPI бэкенду
+    // window.backendUrl = 'http://127.0.0.1:8080';
+    window.backendUrl = 'https://wildly-certain-oarfish.ngrok-free.app';
+
     // Флаг для предотвращения повторных перенаправлений
     let isRedirecting = false;
 
@@ -52,30 +55,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Функция для инициализации авторизации через Telegram Web App
     const initializeTelegramAuth = async () => {
+
+        const data = {'status':'ok'};
+
+        if (data.status === 'ok') {
+
+            // Обновляем nickname в top.html
+            const nicknameElement = document.getElementById('user-nickname');
+            if (nicknameElement) {
+                nicknameElement.innerText = data.username || 'Пользователь';
+            } else {
+                console.warn('Элемент с id "user-nickname" не найден.');
+            }
+
+            // После успешной авторизации загружаем контентный модуль Spin
+            await loadContentModule('spin/spin.html');
+        } else {
+            // Обработка ошибок, полученных от бэкенда
+            console.error('Ошибка авторизации:', data);
+            document.getElementById('user-nickname').innerText = 'Ошибка авторизации';
+        }
+
+    };
+
+    // Функция для инициализации авторизации через Telegram Web App
+    const initializeTelegramAuth1 = async () => {
         const tg = window.Telegram.WebApp;
 
         // Проверяем, открыто ли приложение внутри Telegram
-        if (!tg.initData) {
-            if (!isRedirecting) {
-                isRedirecting = true;
-                // Если нет, перенаправляем пользователя к боту
-                //window.location.href = 'https://t.me/gamen_test_bot';
-            }
-            return;
-        }
+        // if (!tg.initData) {
+        //     if (!isRedirecting) {
+        //         isRedirecting = true;
+        //         // Если нет, перенаправляем пользователя к боту
+        //         window.location.href = 'https://t.me/gamen_test_bot';
+        //     }
+        //     return;
+        // }
 
         const initData = tg.initData;
 
-        // Путь к вашему FastAPI бэкенду
-        const backendUrl = 'https://wildly-certain-oarfish.ngrok-free.app/auth'; // Замените на ваш URL
 
         try {
-            const response = await fetch(backendUrl, {
+            const response = await fetch(window.backendUrl.concat('/auth'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ init_data: initData }),
+                body: JSON.stringify({init_data: initData}),
             });
 
             if (!response.ok) {
@@ -153,4 +179,5 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
         }
     };
+
 });

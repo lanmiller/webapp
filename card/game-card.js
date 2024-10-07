@@ -19,6 +19,8 @@ class GameCard extends HTMLElement {
         if (oldValue !== newValue) {
             if (name === 'notification') {
                 this.notification = this.hasAttribute('notification');
+            } else if (name === 'game-image') {
+                this.gameImage = newValue;
             } else {
                 this[name] = newValue;
             }
@@ -127,9 +129,8 @@ class GameCard extends HTMLElement {
             ${this.notification ? '<div class="notification-dot"></div>' : ''}
             <img class="background-up-icon" alt="Background Up" src="/assets/images/background-up.png">
             <img class="game-image-icon" alt="Game Image" src="${this.gameImage}">
-            <img class="up-border-icon" alt="Up Border ${this.grade}" src="/assets/images/up-boarder-${this.grade}.svg">
-            <img class="small-card-logo-icon" alt="Small Card Logo ${this.grade}" src="/assets/images/small-card-logo-${this.grade}.svg">
-
+            <img class="up-border-icon" alt="Up Border ${this.grade}" src="assets/images/up-boarder-${this.grade}.svg">
+            <img class="small-card-logo-icon" alt="Small Card Logo ${this.grade}" src="assets/images/small-card-logo-${this.grade}.svg">
         `;
 
     }
