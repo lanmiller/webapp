@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция для получения статусов уведомлений с backend
     async function fetchNotificationStatuses() {
         try {
-            const response = await fetch('https://wildly-certain-oarfish.ngrok-free.app/api/notifications/status');
+            const response = await fetch(window.backendUrl.concat('/api/notifications/status'));
             if (!response.ok) {
                 throw new Error(`Ошибка сети: ${response.status}`);
             }

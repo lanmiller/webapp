@@ -1,6 +1,8 @@
 // main.js
-
 document.addEventListener('DOMContentLoaded', () => {
+    // Путь к вашему FastAPI бэкенду
+    window.backendUrl = 'http://127.0.0.1:8080';
+
     // Флаг для предотвращения повторных перенаправлений
     let isRedirecting = false;
 
@@ -55,27 +57,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const tg = window.Telegram.WebApp;
 
         // Проверяем, открыто ли приложение внутри Telegram
-        if (!tg.initData) {
-            if (!isRedirecting) {
-                isRedirecting = true;
-                // Если нет, перенаправляем пользователя к боту
-                //window.location.href = 'https://t.me/gamen_test_bot';
-            }
-            return;
-        }
+        // if (!tg.initData) {
+        //     if (!isRedirecting) {
+        //         isRedirecting = true;
+        //         // Если нет, перенаправляем пользователя к боту
+        //         window.location.href = 'https://t.me/gamen_test_bot';
+        //     }
+        //     return;
+        // }
 
         const initData = tg.initData;
 
-        // Путь к вашему FastAPI бэкенду
-        const backendUrl = 'https://wildly-certain-oarfish.ngrok-free.app/auth'; // Замените на ваш URL
 
         try {
-            const response = await fetch(backendUrl, {
+            const response = await fetch(window.backendUrl.concat('/auth'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ init_data: initData }),
+                body: JSON.stringify({init_data: initData}),
             });
 
             if (!response.ok) {
@@ -153,4 +153,5 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
         }
     };
+
 });
