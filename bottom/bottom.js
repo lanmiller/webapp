@@ -1,5 +1,3 @@
-// bottom/bottom.js
-
 document.addEventListener('DOMContentLoaded', () => {
     // Переключение активного состояния
     function toggleActiveState(target) {
@@ -20,13 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         targetIcon.src = `assets/images/bottom-${targetType}-true.svg`;
 
         // Загружаем соответствующий модуль контента
-        if (targetType === 'home') {
-            // Если кнопка "home", загружаем модуль Spin
-            loadContentModule('spin/spin.html');
-        } else {
-            // Для других кнопок загружаем соответствующие модули
-            loadContentModule(`content/${targetType}.html`);
-        }
+        loadContentModule(`content/${targetType}.html`);
     }
 
     // Установка статуса уведомления
@@ -67,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'ngrok-skip-browser-warning': 'true'
                     },
                 });
+
             if (!response.ok) {
                 throw new Error(`Ошибка сети: ${response.status}`);
             }
@@ -84,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // setInterval(fetchNotificationStatuses, 10000); // Каждые 10 секунд
     setInterval(fetchNotificationStatuses, 10000000); // Каждые 10000 секунд
 
-    // Инициализируем активную вкладку "home" при загрузке
+    // Инициализируем активную вкладку (например, домашнюю)
     const initialTab = document.querySelector('.bottom__item[data-type="home"]');
     if (initialTab) {
         toggleActiveState(initialTab);
