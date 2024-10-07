@@ -19,6 +19,8 @@ class GameCard extends HTMLElement {
         if (oldValue !== newValue) {
             if (name === 'notification') {
                 this.notification = this.hasAttribute('notification');
+            } else if (name === 'game-image') {
+                this.gameImage = newValue;
             } else {
                 this[name] = newValue;
             }
