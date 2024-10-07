@@ -98,7 +98,7 @@ class GameCard extends HTMLElement {
                     width: 92.3%;
                     top: 3.85%;
                     left: 3.85%;
-                    border-radius: 8px 28px var(--br-9xs) var(--br-9xs);
+                    border-radius: 8px 28px 8px 8px;
                     object-fit: cover;
                     z-index: 2;
                 }
