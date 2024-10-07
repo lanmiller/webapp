@@ -92,27 +92,26 @@
             let currentCard;
 
             function updateCard() {
-                // Удаляем предыдущую карточку
-                if (currentCard) {
-                    cardContainer.removeChild(currentCard.getElement());
-                }
+    // Удаляем предыдущую карточку
+    if (currentCard) {
+        cardContainer.removeChild(currentCard);
+    }
 
-                // Получаем выбранные параметры
-                const grade = gradeSelect.value;
-                const notification = notificationCheckbox.checked;
-                const size = parseInt(sizeInput.value);
+    // Создаем новую карточку как элемент <game-card>
+    const card = document.createElement('game-card');
 
-                // Создаем новую карточку с выбранными параметрами
-                const card = new GameCard({
-                    grade: grade,
-                    gameImage: 'assets/images/game-image.png', // Здесь можно подставить динамическую ссылку с бэкенда
-                    notification: notification,
-                    size: size
-                });
+    // Устанавливаем атрибуты для карточки
+    card.setAttribute('grade', gradeSelect.value);
+    card.setAttribute('game-image', 'assets/images/game-image.png');
+    if (notificationCheckbox.checked) {
+        card.setAttribute('notification', '');
+    }
 
-                cardContainer.appendChild(card.getElement());
-                currentCard = card;
-            }
+    // Добавляем карточку в контейнер
+    cardContainer.appendChild(card);
+    currentCard = card;
+}
+
 
             // Обработчики событий для обновления карточки при изменении параметров
             gradeSelect.addEventListener('change', updateCard);
