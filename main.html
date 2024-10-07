@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="global-style/global.css">
     <!-- Подключение основных стилей -->
     <link rel="stylesheet" href="main.css">
-    
 </head>
 <body>
     <div class="main">
@@ -17,13 +16,18 @@
         <div id="top-container"></div>
         <div class="content">
             <!-- Здесь будут динамически загружаться модули -->
+            <!-- Модуль Spin будет загружен автоматически после авторизации -->
         </div>
         <div id="bottom-container"></div>
     </div>
 
     <!-- Подключение библиотеки Telegram Web App -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <!-- Подключение скриптов -->
+    <!-- Подключение скриптов компонента game-card -->
+    <script src="card/game-card.js"></script>
+    <!-- Подключение скриптов нижнего меню -->
+    <script src="bottom/bottom.js"></script>
+    <!-- Подключение основного скрипта -->
     <script src="main.js"></script>
 </body>
 </html>

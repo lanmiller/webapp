@@ -1,0 +1,142 @@
+/* card/game-card.css */
+
+/* Общие стили для карточки типа 'up' */
+.game-card-up-common,
+.game-card-up-rare,
+.game-card-up-unique,
+.game-card-up-epic,
+.game-card-up-legend,
+.game-card-up-mythic,
+.game-card-up-all {
+    position: relative;
+    width: 200px; /* Значение будет переопределено через inline стили */
+    height: 200px; /* Значение будет переопределено через inline стили */
+    border-radius: 2px; /* Значение будет переопределено через inline стили */
+    box-shadow: var(--grade-common); /* Значение будет переопределено для каждого грейда */
+    background: var(--grade-common-radial); /* Значение будет переопределено для каждого грейда */
+    overflow: hidden;
+}
+
+/* Стили для разных грейдов */
+.game-card-up-common {
+    box-shadow: var(--grade-common);
+    background: var(--grade-common-radial);
+}
+
+.game-card-up-rare {
+    box-shadow: var(--grade-rare);
+    background: var(--grade-rare-radial);
+}
+
+.game-card-up-unique {
+    box-shadow: var(--grade-unique);
+    background: var(--grade-unique-radial);
+}
+
+.game-card-up-epic {
+    box-shadow: var(--grade-epic);
+    background: var(--grade-epic-radial);
+}
+
+.game-card-up-legend {
+    box-shadow: var(--grade-legend);
+    background: var(--grade-legend-radial);
+}
+
+.game-card-up-mythic {
+    box-shadow: var(--grade-mythic);
+    background: var(--grade-mythic-radial);
+}
+
+.game-card-up-all {
+    box-shadow: none; /* Пример: убираем тень для грейда 'all' */
+    background: var(--grade-all-radial); /* Пример: специальный фон для грейда 'all' */
+    border: 1px solid var(--grade-all-angular); /* Добавляем обводку для грейда 'all' */
+}
+
+/* Индикатор уведомления */
+.notification-dot {
+    position: absolute;
+    height: 4%;
+    width: 4%;
+    top: 3.5%;
+    right: 3.5%;
+    border-radius: 50%;
+    background-color: var(--colored-red-02);
+    z-index: 5;
+    animation: blink 1s infinite; /* Пример анимации мигания */
+}
+
+/* Анимация мигания для уведомления */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Фон карточки */
+.background-up-icon {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: var(--br-9xs);
+    object-fit: cover;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+/* Изображение игры */
+.game-image-icon {
+    position: absolute;
+    height: 92.3%;
+    width: 92.3%;
+    top: 3.85%;
+    right: 3.85%;
+    bottom: 3.85%;
+    left: 3.85%;
+    border-radius: 8px 28px var(--br-9xs) var(--br-9xs);
+    object-fit: cover;
+    z-index: 2;
+}
+
+/* Бордер карточки */
+.up-boarder-common-icon,
+.up-boarder-rare-icon,
+.up-boarder-unique-icon,
+.up-boarder-epic-icon,
+.up-boarder-legend-icon,
+.up-boarder-mythic-icon,
+.up-boarder-all-icon {
+    position: absolute;
+    height: 93%;
+    width: 93%;
+    top: 3.5%;
+    right: 3.5%;
+    bottom: 3.5%;
+    left: 3.5%;
+    object-fit: cover;
+    z-index: 3;
+}
+
+/* Маленький логотип карточки */
+.small-card-logo-common-icon,
+.small-card-logo-rare-icon,
+.small-card-logo-unique-icon,
+.small-card-logo-epic-icon,
+.small-card-logo-legend-icon,
+.small-card-logo-mythic-icon,
+.small-card-logo-all-icon {
+    position: absolute;
+    height: 22.5%;
+    width: 22.5%;
+    top: 3.5%;
+    right: 3.5%;
+    bottom: 74%;
+    left: 74%;
+    object-fit: cover;
+    z-index: 4;
+}

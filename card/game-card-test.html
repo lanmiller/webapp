@@ -1,0 +1,127 @@
+<!-- card/game-card-test.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестирование GameCard - GameN</title>
+    <!-- Подключение глобальных стилей -->
+    <link rel="stylesheet" href="/global-style/global.css">
+    <!-- Подключение стилей карточек -->
+    <link rel="stylesheet" href="game-cards.css">
+    <style>
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--dark-brand-04);
+            color: var(--mono-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .controls div {
+            display: flex;
+            align-items: center;
+        }
+        .controls label {
+            margin-right: 10px;
+        }
+        .controls select, .controls input {
+            margin-right: 20px;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 300px;
+
+            border-radius: 8px;
+            background-color: #2E3338;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Тестирование GameCard</h1>
+
+    <div class="controls">
+        <div>
+            <label for="grade-select">Грейд:</label>
+            <select id="grade-select">
+                <option value="common">Common</option>
+                <option value="rare">Rare</option>
+                <option value="unique">Unique</option>
+                <option value="epic">Epic</option>
+                <option value="legend">Legend</option>
+                <option value="mythic">Mythic</option>
+                <option value="all">All</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="notification-checkbox">Уведомление:</label>
+            <input type="checkbox" id="notification-checkbox">
+        </div>
+
+        <div>
+            <label for="size-input">Размер (px):</label>
+            <input type="number" id="size-input" value="200" min="100" max="400">
+        </div>
+    </div>
+
+    <div class="card-container" id="card-container">
+        <!-- Здесь будет отображаться карточка -->
+    </div>
+
+    <!-- Подключение скрипта GameCard -->
+    <script src="game-card.js"></script>
+    <!-- Скрипт для управления тестовой страницей -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gradeSelect = document.getElementById('grade-select');
+            const notificationCheckbox = document.getElementById('notification-checkbox');
+            const sizeInput = document.getElementById('size-input');
+            const cardContainer = document.getElementById('card-container');
+
+            let currentCard;
+
+            function updateCard() {
+                // Удаляем предыдущую карточку
+                if (currentCard) {
+                    cardContainer.removeChild(currentCard.getElement());
+                }
+
+                // Получаем выбранные параметры
+                const grade = gradeSelect.value;
+                const notification = notificationCheckbox.checked;
+                const size = parseInt(sizeInput.value);
+
+                // Создаем новую карточку с выбранными параметрами
+                const card = new GameCard({
+                    grade: grade,
+                    gameImage: 'assets/images/game-image.png', // Здесь можно подставить динамическую ссылку с бэкенда
+                    notification: notification,
+                    size: size
+                });
+
+                cardContainer.appendChild(card.getElement());
+                currentCard = card;
+            }
+
+            // Обработчики событий для обновления карточки при изменении параметров
+            gradeSelect.addEventListener('change', updateCard);
+            notificationCheckbox.addEventListener('change', updateCard);
+            sizeInput.addEventListener('input', updateCard);
+
+            // Первоначальное отображение карточки
+            updateCard();
+        });
+    </script>
+</body>
+</html>

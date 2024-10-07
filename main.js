@@ -1,8 +1,11 @@
-// webapp/main.js
+// main.js
 
 document.addEventListener('DOMContentLoaded', () => {
     // Флаг для предотвращения повторных перенаправлений
     let isRedirecting = false;
+
+    // Храним токен после авторизации
+    let authToken = null;
 
     // Функция для загрузки HTML модулей
     const loadModule = async (containerId, modulePath) => {
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isRedirecting) {
                 isRedirecting = true;
                 // Если нет, перенаправляем пользователя к боту
-                window.location.href = 'https://t.me/gamen_test_bot/gamen_test';
+                //window.location.href = 'https://t.me/gamen_test_bot';
             }
             return;
         }
@@ -64,15 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const initData = tg.initData;
 
         // Путь к вашему FastAPI бэкенду
-        const backendUrl = 'https://wildly-certain-oarfish.ngrok-free.app/auth';
+        const backendUrl = 'https://wildly-certain-oarfish.ngrok-free.app/auth'; // Замените на ваш URL
 
         try {
             const response = await fetch(backendUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-                body: new URLSearchParams({ initData }),
+                body: JSON.stringify({ init_data: initData }),
             });
 
             if (!response.ok) {
@@ -82,24 +85,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (data.status === 'ok') {
-                // Успешная аутентификация, отображаем имя пользователя
-                const username = data.username || 'Пользователь';
-
+                // Успешная аутентификация, сохраняем токен
+                authToken = data.auth_token;
 
                 // Обновляем nickname в top.html
                 const nicknameElement = document.getElementById('user-nickname');
                 if (nicknameElement) {
-                    nicknameElement.innerText = username;
+                    nicknameElement.innerText = data.username || 'Пользователь';
                 } else {
                     console.warn('Элемент с id "user-nickname" не найден.');
                 }
+
+                // После успешной авторизации загружаем контентный модуль Spin
+                await loadContentModule('spin/spin.html');
             } else {
                 // Обработка ошибок, полученных от бэкенда
-                console.error('Authentication failed:', data);
-                document.getElementById('user-nickname').innerText = 'Ошибка аутентификации';
+                console.error('Ошибка авторизации:', data);
+                document.getElementById('user-nickname').innerText = 'Ошибка авторизации';
             }
         } catch (error) {
-            console.error('Error during authentication:', error);
+            console.error('Ошибка при авторизации:', error);
             document.getElementById('user-nickname').innerText = 'Ошибка при запросе';
         }
     };
@@ -139,6 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const jsPath = modulePath.replace('.html', '.js');
             await loadCSS(cssPath);
             await loadJS(jsPath);
+
+            // Передаем authToken в глобальную область видимости контентного модуля
+            if (window.initializeContentModule) {
+                window.initializeContentModule(authToken);
+            }
         } catch (error) {
             console.error(error);
         }
