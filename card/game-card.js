@@ -7,7 +7,7 @@ class GameCard extends HTMLElement {
 
         // Получаем атрибуты
         this.grade = this.getAttribute('grade') || 'common';
-        this.gameImage = this.getAttribute('game-image') || '/assets/images/game-image.png';
+        this.gameImage = this.getAttribute('game-image') || '../assets/images/game-image.png';
         this.notification = this.hasAttribute('notification');
     }
 
@@ -127,10 +127,10 @@ class GameCard extends HTMLElement {
             </style>
 
             ${this.notification ? '<div class="notification-dot"></div>' : ''}
-            <img class="background-up-icon" alt="Background Up" src="/assets/images/background-up.png">
+            <img class="background-up-icon" alt="Background Up" src="../assets/images/background-up.png">
             <img class="game-image-icon" alt="Game Image" src="${this.gameImage}">
-            <img class="up-border-icon" alt="Up Border ${this.grade}" src="assets/images/up-boarder-${this.grade}.svg">
-            <img class="small-card-logo-icon" alt="Small Card Logo ${this.grade}" src="assets/images/small-card-logo-${this.grade}.svg">
+            <img class="up-border-icon" alt="Up Border ${this.grade}" src="../assets/images/up-boarder-${this.grade}.svg">
+            <img class="small-card-logo-icon" alt="Small Card Logo ${this.grade}" src="../assets/images/small-card-logo-${this.grade}.svg">
         `;
 
     }

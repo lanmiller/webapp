@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('spin-button').addEventListener('click', () => {
-
-
     // Функция для начала анимации вращения
     function startSpinAnimation() {
         const spinImage = document.getElementById('spin-image');
@@ -66,26 +64,29 @@ document.getElementById('spin-button').addEventListener('click', () => {
     // Функция для отображения новой карты
     function displayGameCard(data) {
         const cardPlaceholder = document.getElementById('card-placeholder');
+        cardPlaceholder.innerHTML = '';
+
+        if (!cardPlaceholder) {
+            console.error('Элемент с ID "card-placeholder" не найден.');
+            return;
+        }
 
         // Удаляем только существующие <game-card> элементы
         const existingGameCards = cardPlaceholder.querySelectorAll('game-card');
         existingGameCards.forEach(card => card.remove());
 
+
         // Создаём новый элемент <game-card>
         const gameCard = document.createElement('game-card');
 
-        // Устанавливаем необходимые атрибуты
+        // Устанавливаем атрибуты для карточки
         gameCard.setAttribute('grade', data.grade);
         gameCard.setAttribute('game-image', data.game_img);
         if (data.notification) {
             gameCard.setAttribute('notification', '');
         }
 
-        // Устанавливаем размер через CSS или атрибуты, если необходимо
-        gameCard.style.width = '200px';
-        gameCard.style.height = '200px';
-
-        // Очищаем placeholder и добавляем новую карточку
+        // Добавляем новый <game-card> в DOM
         cardPlaceholder.appendChild(gameCard);
     }
 

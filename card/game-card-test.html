@@ -92,25 +92,25 @@
             let currentCard;
 
             function updateCard() {
-    // Удаляем предыдущую карточку
-    if (currentCard) {
-        cardContainer.removeChild(currentCard);
-    }
+                // Удаляем предыдущую карточку
+                if (currentCard) {
+                    cardContainer.removeChild(currentCard);
+                }
 
-    // Создаем новую карточку как элемент <game-card>
-    const card = document.createElement('game-card');
+                // Создаем новую карточку как элемент <game-card>
+                const card = document.createElement('game-card');
 
-    // Устанавливаем атрибуты для карточки
-    card.setAttribute('grade', gradeSelect.value);
-    card.setAttribute('game-image', 'assets/images/game-image.png');
-    if (notificationCheckbox.checked) {
-        card.setAttribute('notification', '');
-    }
+                // Устанавливаем атрибуты для карточки
+                card.setAttribute('grade', gradeSelect.value);
+                card.setAttribute('game-image', 'https://img.gamedistribution.com/d33236880b2148aa87f85365c80d40d2-512x512.jpg');
+                if (notificationCheckbox.checked) {
+                    card.setAttribute('notification', '');
+                }
 
-    // Добавляем карточку в контейнер
-    cardContainer.appendChild(card);
-    currentCard = card;
-}
+                // Добавляем карточку в контейнер
+                cardContainer.appendChild(card);
+                currentCard = card;
+            }
 
 
             // Обработчики событий для обновления карточки при изменении параметров
