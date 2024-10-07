@@ -54,32 +54,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Функция для инициализации авторизации через Telegram Web App
     const initializeTelegramAuth = async () => {
-        try {
-            const data = {'status':'ok'};
 
-            if (data.status === 'ok') {
-                // Успешная аутентификация, сохраняем токен
-                authToken = data.auth_token;
+        const data = {'status':'ok'};
 
-                // Обновляем nickname в top.html
-                const nicknameElement = document.getElementById('user-nickname');
-                if (nicknameElement) {
-                    nicknameElement.innerText = data.username || 'Пользователь';
-                } else {
-                    console.warn('Элемент с id "user-nickname" не найден.');
-                }
+        if (data.status === 'ok') {
 
-                // После успешной авторизации загружаем контентный модуль Spin
-                await loadContentModule('spin/spin.html');
+            // Обновляем nickname в top.html
+            const nicknameElement = document.getElementById('user-nickname');
+            if (nicknameElement) {
+                nicknameElement.innerText = data.username || 'Пользователь';
             } else {
-                // Обработка ошибок, полученных от бэкенда
-                console.error('Ошибка авторизации:', data);
-                document.getElementById('user-nickname').innerText = 'Ошибка авторизации';
+                console.warn('Элемент с id "user-nickname" не найден.');
             }
-        } catch (error) {
-            console.error('Ошибка при авторизации:', error);
-            document.getElementById('user-nickname').innerText = 'Ошибка при запросе';
+
+            // После успешной авторизации загружаем контентный модуль Spin
+            await loadContentModule('spin/spin.html');
+        } else {
+            // Обработка ошибок, полученных от бэкенда
+            console.error('Ошибка авторизации:', data);
+            document.getElementById('user-nickname').innerText = 'Ошибка авторизации';
         }
+
     };
 
     // Функция для инициализации авторизации через Telegram Web App
