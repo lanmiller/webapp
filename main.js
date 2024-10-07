@@ -54,6 +54,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Функция для инициализации авторизации через Telegram Web App
     const initializeTelegramAuth = async () => {
+        try {
+            const data = {'status':'ok'};
+
+            if (data.status === 'ok') {
+                // Успешная аутентификация, сохраняем токен
+                authToken = data.auth_token;
+
+                // Обновляем nickname в top.html
+                const nicknameElement = document.getElementById('user-nickname');
+                if (nicknameElement) {
+                    nicknameElement.innerText = data.username || 'Пользователь';
+                } else {
+                    console.warn('Элемент с id "user-nickname" не найден.');
+                }
+
+                // После успешной авторизации загружаем контентный модуль Spin
+                await loadContentModule('spin/spin.html');
+            } else {
+                // Обработка ошибок, полученных от бэкенда
+                console.error('Ошибка авторизации:', data);
+                document.getElementById('user-nickname').innerText = 'Ошибка авторизации';
+            }
+        } catch (error) {
+            console.error('Ошибка при авторизации:', error);
+            document.getElementById('user-nickname').innerText = 'Ошибка при запросе';
+        }
+    };
+
+    // Функция для инициализации авторизации через Telegram Web App
+    const initializeTelegramAuth1 = async () => {
         const tg = window.Telegram.WebApp;
 
         // Проверяем, открыто ли приложение внутри Telegram
