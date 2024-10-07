@@ -1,9 +1,4 @@
-<<<<<<< Updated upstream
 // main.js
-=======
-// webapp/main.js
-
->>>>>>> Stashed changes
 document.addEventListener('DOMContentLoaded', () => {
     // Путь к вашему FastAPI бэкенду
     // window.backendUrl = 'http://127.0.0.1:8080';
@@ -11,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Флаг для предотвращения повторных перенаправлений
     let isRedirecting = false;
+
+    // Храним токен после авторизации
+    let authToken = null;
 
     // Функция для загрузки HTML модулей
     const loadModule = async (containerId, modulePath) => {
@@ -85,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const tg = window.Telegram.WebApp;
 
         // Проверяем, открыто ли приложение внутри Telegram
-<<<<<<< Updated upstream
         // if (!tg.initData) {
         //     if (!isRedirecting) {
         //         isRedirecting = true;
@@ -97,33 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const initData = tg.initData;
 
-=======
-        //if (!tg.initData) {
-            //if (!isRedirecting) {
-                //isRedirecting = true;
-                // Если нет, перенаправляем пользователя к боту
-                //window.location.href = 'https://t.me/gamen_test_bot/gamen_test';
-            //}
-            //return;
-       // }
-
-        const initData = tg.initData;
-
-        // Путь к вашему FastAPI бэкенду
-        const backendUrl = 'https://wildly-certain-oarfish.ngrok-free.app/auth';
->>>>>>> Stashed changes
 
         try {
             const response = await fetch(window.backendUrl.concat('/auth'), {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-<<<<<<< Updated upstream
                 body: JSON.stringify({init_data: initData}),
-=======
-                body: new URLSearchParams({ initData }),
->>>>>>> Stashed changes
             });
 
             if (!response.ok) {
@@ -133,24 +111,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (data.status === 'ok') {
-                // Успешная аутентификация, отображаем имя пользователя
-                const username = data.username || 'Пользователь';
-
+                // Успешная аутентификация, сохраняем токен
+                authToken = data.auth_token;
 
                 // Обновляем nickname в top.html
                 const nicknameElement = document.getElementById('user-nickname');
                 if (nicknameElement) {
-                    nicknameElement.innerText = username;
+                    nicknameElement.innerText = data.username || 'Пользователь';
                 } else {
                     console.warn('Элемент с id "user-nickname" не найден.');
                 }
+
+                // После успешной авторизации загружаем контентный модуль Spin
+                await loadContentModule('spin/spin.html');
             } else {
                 // Обработка ошибок, полученных от бэкенда
-                console.error('Authentication failed:', data);
-                document.getElementById('user-nickname').innerText = 'Ошибка аутентификации';
+                console.error('Ошибка авторизации:', data);
+                document.getElementById('user-nickname').innerText = 'Ошибка авторизации';
             }
         } catch (error) {
-            console.error('Error during authentication:', error);
+            console.error('Ошибка при авторизации:', error);
             document.getElementById('user-nickname').innerText = 'Ошибка при запросе';
         }
     };
@@ -190,6 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const jsPath = modulePath.replace('.html', '.js');
             await loadCSS(cssPath);
             await loadJS(jsPath);
+
+            // Передаем authToken в глобальную область видимости контентного модуля
+            if (window.initializeContentModule) {
+                window.initializeContentModule(authToken);
+            }
         } catch (error) {
             console.error(error);
         }

@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция для получения статусов уведомлений с backend
     async function fetchNotificationStatuses() {
         try {
-<<<<<<< Updated upstream
             const response = await fetch(window.backendUrl.concat('/api/notifications/status'),
                 {
                     method: 'GET',
@@ -60,9 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'ngrok-skip-browser-warning': 'true'
                     },
                 });
-=======
-            const response = await fetch('/api/notifications/status');
->>>>>>> Stashed changes
+
             if (!response.ok) {
                 throw new Error(`Ошибка сети: ${response.status}`);
             }
