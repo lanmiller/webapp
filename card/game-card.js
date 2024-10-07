@@ -43,7 +43,7 @@ class GameCard extends HTMLElement {
                     display: block;
                     width: 100%;
                     aspect-ratio: 1 / 1; /* Сохраняем квадратную форму */
-                    position: relative;
+                    /*position: relative;*/
                     border-radius: var(--br-9xs);
                     box-shadow: var(--grade-${this.grade});
                     background: var(--grade-${this.grade}-radial);

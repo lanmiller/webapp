@@ -65,7 +65,6 @@ document.getElementById('spin-button').addEventListener('click', () => {
     // Функция для отображения новой карты
     function displayGameCard(data) {
         const cardPlaceholder = document.getElementById('card-placeholder');
-        cardPlaceholder.innerHTML = '';
 
         if (!cardPlaceholder) {
             console.error('Элемент с ID "card-placeholder" не найден.');
